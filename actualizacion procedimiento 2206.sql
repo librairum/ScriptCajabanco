@@ -3,7 +3,7 @@ go
 select * from sys.objects order by modify_date desc
 
 
-Create procedure Spu_Ban_Del_PrepuestoDetraccion  
+create procedure Spu_Ban_Del_PrepuestoDetraccion  
 @Ban01Empresa char(2),   
 @Ban01Numero  varchar(5),  
 @flag int output,  
@@ -32,7 +32,7 @@ ManejaError:
 Rollback transaction  
 return -1  
 Go
-CREATE Procedure Spu_Ban_Ins_PresupuestoDetraMasiva           
+alter Procedure Spu_Ban_Ins_PresupuestoDetraMasiva           
 @Ban01Empresa varchar(2),                          
 @Ban01Anio varchar(4),                            
 @Ban01Mes varchar(2),                            
@@ -99,8 +99,7 @@ Ban02NetoSoles,Ban02NetoDolares
           
           
 Select @Ban01Empresa as 'empresa',@ultimoCodigo,      
-RIGHT('00000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT CO26N
-UMLOTE)) AS VARCHAR(5)), 5) as 'Correlativo',          
+RIGHT('00000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT CO26NUMLOTE)) AS VARCHAR(5)), 5) as 'Correlativo',          
 CO26RUC,CO26TIPDOC,CO26NRODOC,          
 Convert(decimal(18,2),CO26IMPORTEDETRA),Convert(decimal(9,2),CO26IMPORTEDETRADOL),          
 ''as 'Detra_Tipo',          
@@ -153,7 +152,7 @@ set @mensaje = 'Error al
 rollback transaction
 return -1
 
-CREATE Procedure Spu_Ban_Trae_DetraccionMasivaCab    
+alter Procedure Spu_Ban_Trae_DetraccionMasivaCab    
 @empresa char(2),    
 @anio  char(4),    
 @mes  char(2),    
@@ -204,7 +203,7 @@ From V_PresupuestoTotales
 Where Ban01Empresa=@empresa and Ban01Anio=@anio and Ban01Mes=@mes and Ban01motivopagoCod=@motivopago -- Detracciones masivas    
 End  
 Go
-CREATE procedure Spu_Ban_Trae_DocPendiente_Detra    
+alter procedure Spu_Ban_Trae_DocPendiente_Detra    
 @empresa char(2),                  
 @ruc varchar(100) ,            
 @numeroDocumento varchar(100)            
@@ -300,4 +299,5 @@ CREATE procedure Spu_Ban_Trae_DocPendiente_Detra
     and (@numeroDocumento =  '' or dcp.[NroDocumento] like '%'+ @numeroDocumento+ '%')             
     and (@ruc = '' or dcp.[Ruc] = @ruc)             
     order by dcp.FechaEmision desc            
+   End
    End
