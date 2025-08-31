@@ -1,7 +1,7 @@
 --select * from sys.objects where type = 'P'
 --order by modify_date desc
 
-Create procedure Spu_Ban_Del_PresupuestoDetraccionIndividual  
+create procedure Spu_Ban_Del_PresupuestoDetraccionIndividual  
 @empresa char(2),  
 @nropresupuesto varchar(5),  
 @flag int output,  
@@ -41,8 +41,9 @@ rollback transaction
   
 return -1  
 End  
-  Go
-CREATE Procedure Spu_Ban_Trae_DetraccionIndividualCab      
+Go
+
+alter Procedure Spu_Ban_Trae_DetraccionIndividualCab      
 @Ban01Empresa char(2),      
 @Ban01Anio  char(4),      
 @Ban01Mes  char(2),      
